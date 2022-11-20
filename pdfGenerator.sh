@@ -143,3 +143,4 @@ pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
 
 echo
 echo "Success (probably)!"
+
