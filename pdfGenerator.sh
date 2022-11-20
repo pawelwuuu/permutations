@@ -112,12 +112,34 @@ do
 done
 
 
-#obtaining permutations by values from config file
+#creation of pdf
+rm ./generatedPdf/*
+mkdir generatedPdf
+touch ./generatedPdf/sketch.tex
+
+echo "Creating pdf in progress..."
+echo "\documentclass{article}" >> ./generatedPdf/sketch.tex
+echo "\begin{document}" >> ./generatedPdf/sketch.tex
+
 for ((i=0; i<${#setLength[@]}; i++))
 do
 	#todo ZMIENIC TO ZEBY PROGRAM DZIALAL JAK POWINIEN, CZYLI DO KOMENDY WYWOLUJACEJ DODAC PARAMETRY, ORAZ DO PODAC TUTAJ NAZWE SKRYPTU
 	#test
-	./test.sh `./permutacje`
+
+	if [ ${permutationsAmount[$i]} -eq 0 ]
+	then
+		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
+		./build/permutacje ${setLength[$i]} A >> ./generatedPdf/sketch.tex
+	else
+		echo "\section{Zbior ${setLength[$i]}-elementowy zawierajacy permutacje w ilosci ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
+		./build/permutacje ${setLength[$i]} ${permutationsAmount[$i]} >> ./generatedPdf/sketch.tex
+	fi
+	
 	sleep 0.1
 done
 
+echo "\end{document}" >> ./generatedPdf/sketch.tex
+pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
+
+echo
+echo "Success (probably)!"
