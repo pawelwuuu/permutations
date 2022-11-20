@@ -86,10 +86,10 @@ do
     fi
 done
 
-#checking if set lenght parameters are in limit of 100
+#checking if set lenght parameters are in limit of 60
 for parameter in ${setLength[@]}
 do
-    if [[ $parameter -gt 100 ]] ; then
+    if [[ $parameter -gt 60 ]] ; then
         echo "Invalid configuration parameters, limit of set length is 100."
         exit
     fi
