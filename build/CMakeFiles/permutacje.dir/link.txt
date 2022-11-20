@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/permutacje.dir/permutacje.c.o -o permutacje 

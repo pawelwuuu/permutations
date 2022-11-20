@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/twoja_stara.dir/inwersjePermutacji.c.o -o twoja_stara 
