@@ -172,14 +172,15 @@ int main(int argc, char *argv[])
 
 	str0[dlugosc] = '\0';
 
-	printf("Permutacja glowna: %s\n", str0);
-	char str[10];
-	char str2[10];
-	strncpy(str, str0, 10);
-	strncpy(str2, str0 + 9, 10);
-	str[9] = '\0';
-	str2[9] = '\0';
+	
+	char str[9];
+	char str2[53];
+	strncpy(str, str0, 9);
+	strncpy(str2, str0 + 8, 53);
+	str[8] = '\0';
+	str2[52] = '\0';
 	int ile = 1;
+	
 	if (*argv[2] == *"A")
 	{
 		for (int i = 1; i <= dlugosc; i++)
@@ -197,7 +198,8 @@ int main(int argc, char *argv[])
 	{
 		wartosci[i] = i;
 	}
-	if(dlugosc>10){dlugosc=9;}
+	if(dlugosc>10){dlugosc=9;}else{str2[0]='\0';}
 	replikacja(dlugosc, str, str2, wartosci, ile);
+	printf("%s\n", str0);
 	return 0;
 }
