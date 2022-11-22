@@ -1,5 +1,0 @@
-/home/pawel/sp/permutations/build/CMakeFiles/permutacje.dir
-/home/pawel/sp/permutations/build/CMakeFiles/inwersjePermutacji.dir
-/home/pawel/sp/permutations/build/CMakeFiles/parzystoscPermutacji.dir
-/home/pawel/sp/permutations/build/CMakeFiles/edit_cache.dir
-/home/pawel/sp/permutations/build/CMakeFiles/rebuild_cache.dir
