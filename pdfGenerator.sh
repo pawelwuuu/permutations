@@ -113,12 +113,13 @@ done
 
 
 #creation of pdf
-rm ./generatedPdf/*
+rm -r ./generatedPdf
 mkdir generatedPdf
 touch ./generatedPdf/sketch.tex
 
 echo "Creating pdf in progress..."
 echo "\documentclass{article}" >> ./generatedPdf/sketch.tex
+echo "\usepackage[T1]{fontenc}" >> ./generatedPdf/sketch.tex
 echo "\begin{document}" >> ./generatedPdf/sketch.tex
 
 for ((i=0; i<${#setLength[@]}; i++))
@@ -126,19 +127,34 @@ do
 	#todo ZMIENIC TO ZEBY PROGRAM DZIALAL JAK POWINIEN, CZYLI DO KOMENDY WYWOLUJACEJ DODAC PARAMETRY, ORAZ DO PODAC TUTAJ NAZWE SKRYPTU
 	#test
 
+    #CREATING FILE TO STORE ARGUMENTS
+    touch args.tmp
+
 	if [ ${permutationsAmount[$i]} -eq 0 ]
 	then
 		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
-		./build/permutacje ${setLength[$i]} A >> ./generatedPdf/sketch.tex
+        #./subsectionGenerator.sh `./build/permutacje ${setLength[$i]} A`
+        echo "`./build/permutacje ${setLength[$i]} A`" >> args.tmp
+        echo "" >> args.tmp
+        ./subsectionGenerator.sh args.tmp
 	else
 		echo "\section{Zbior ${setLength[$i]}-elementowy zawierajacy permutacje w ilosci ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
-		./build/permutacje ${setLength[$i]} ${permutationsAmount[$i]} >> ./generatedPdf/sketch.tex
+        echo "`./build/permutacje ${setLength[$i]} ${permutationsAmount[$i]}`" >> args.tmp
+        echo "" >> args.tmp
+        ./subsectionGenerator.sh args.tmp
 	fi
 	
-	sleep 0.1
+    echo ${setLength[$i]}
+	sleep 0.5
+    echo "Wygenerowano rozdzial $i"
+
+    #DELETING FILE TO STORE ARGUMENTS
+    rm args.tmp
 done
 
 echo "\end{document}" >> ./generatedPdf/sketch.tex
+
+
 pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
 
 echo
