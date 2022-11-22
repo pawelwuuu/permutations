@@ -1,2 +1,10 @@
 build/
 generatedPdf/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+inwersjePermutacji
+liczbaInwersji
+parzystoscPermutacji
+permutacje

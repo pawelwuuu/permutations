@@ -98,15 +98,10 @@ done
 #checking if permutations amount is in range of permutations avalible to obtain
 for ((j=0; j<${#setLength[@]}; j++))
 do
-	maxPermutationLength=1
-    for ((i=1; i<=${setLength[$j]}; i++))
-	do
-		let "maxPermutationLength=maxPermutationLength*$i"
-	done
-	
-	if [[ ${permutationsAmount[$j]} -gt $maxPermutationLength ]]
+    possibleToObtain=`./build/permutationLimitChecker ${setLength[$j]} ${permutationsAmount[$j]}`
+	if [ $possibleToObtain = "F" ]
 	then
-		echo "Invalid configuration parameters, you can only obtain $maxPermutationLength permutations from ${setLength[$j]} an element set."
+		echo "Invalid configuration parameters, you can only obtain  permutations from ${setLength[$j]} an element set."
         exit
 	fi
 done
@@ -120,13 +115,11 @@ touch ./generatedPdf/sketch.tex
 echo "Creating pdf in progress..."
 echo "\documentclass{article}" >> ./generatedPdf/sketch.tex
 echo "\usepackage[T1]{fontenc}" >> ./generatedPdf/sketch.tex
+echo "\usepackage[legalpaper, margin=1.2in]{geometry}" >> ./generatedPdf/sketch.tex
 echo "\begin{document}" >> ./generatedPdf/sketch.tex
 
 for ((i=0; i<${#setLength[@]}; i++))
 do
-	#todo ZMIENIC TO ZEBY PROGRAM DZIALAL JAK POWINIEN, CZYLI DO KOMENDY WYWOLUJACEJ DODAC PARAMETRY, ORAZ DO PODAC TUTAJ NAZWE SKRYPTU
-	#test
-
     #CREATING FILE TO STORE ARGUMENTS
     touch args.tmp
 
@@ -144,9 +137,8 @@ do
         ./subsectionGenerator.sh args.tmp
 	fi
 	
-    echo ${setLength[$i]}
 	sleep 0.5
-    echo "Wygenerowano rozdzial $i"
+    echo "Chapter $(( $i+1 )) generated."
 
     #DELETING FILE TO STORE ARGUMENTS
     rm args.tmp
