@@ -15,23 +15,11 @@ else
 fi
 
 
-
-firstIterationFlag="true"
-
-chapters=0
 setLength=()
 permutationsAmount=()
 
 #loading parameters to arrays: setLength and permutationsAmount.
 while read line; do
-    if [ $firstIterationFlag = 'true' ]
-        then
-            chapters=$line
-            firstIterationFlag='false'
-
-            continue
-    fi
-
     #parameters is an array that stores splited parameters from read
     #line e.g line (2 5) and line (8 6) will be stored in
     #parameters array like that [2, 5, 8, 6].
@@ -50,6 +38,13 @@ fileContent=`cat -e $filename`
 if [[ ${fileContent: -1} != '$' ]]; then
     echo "Invalid configuration parameters, there should be an empty line at the end of file."
     exit
+fi
+
+#checking if there is enough parameters
+if ! [[ ${#setLength[@]} -eq ${#permutationsAmount[@]} ]]
+then
+	echo "Invalid number of parameters, it should be in 1-1 number."
+	exit
 fi
 
 #checking if parameters are digits
@@ -95,6 +90,22 @@ do
     fi
 done
 
+
+
+#array of required files
+req_files=("build" "build/permutacje" "build/inwersjePermutacji" "build/parzystoscPermutacji" "build/liczbaInwersji" "build/parzystoscPermutacji" "build/permutationLimitChecker")
+
+#testing if required files exist
+for req_file in ${req_files[@]}
+do
+    if ! [ -a $req_file ] ; then
+        echo "Error! $req_file is missing. Check if that file exists, otherwise use make command in build folder."
+        exit
+    fi
+done
+
+
+
 #checking if permutations amount is in range of permutations avalible to obtain
 for ((j=0; j<${#setLength[@]}; j++))
 do
@@ -112,6 +123,7 @@ rm -r ./generatedPdf
 mkdir generatedPdf
 touch ./generatedPdf/sketch.tex
 
+#strcuture of latex
 echo "Creating pdf in progress..."
 echo "\documentclass{article}" >> ./generatedPdf/sketch.tex
 echo "\usepackage[T1]{fontenc}" >> ./generatedPdf/sketch.tex
@@ -144,6 +156,7 @@ do
     rm args.tmp
 done
 
+#strcuture of latex
 echo "\end{document}" >> ./generatedPdf/sketch.tex
 
 
