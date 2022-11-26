@@ -14,16 +14,16 @@ do
     echo  "Permutacja w dwoch liniach & skryptIgora.sh \\\\"  >> ./generatedPdf/sketch.tex 
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
-    echo "Rz permutacji & skryptIgora.sh \\\\" >> ./generatedPdf/sketch.tex
+    echo "Kwadrat permutacji & `./build/permutationSquare $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
     
-    echo "Liczba inwersji & `./build/liczbaInwersji $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
+    echo "Liczba inwersji & `./build/numberOfInversions $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
-    echo "Inwersje permutacji & `./build/inwersjePermutacji $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
+    echo "Inwersje permutacji & `./build/permutationIversions $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
-    echo "Parzystosc permutacji & `./build/parzystoscPermutacji $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
+    echo "Parzystosc permutacji & `./build/permutationEveness $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
     echo "\end{tabular}" >> ./generatedPdf/sketch.tex
 done

@@ -93,7 +93,7 @@ done
 
 
 #array of required files
-req_files=("build" "build/permutacje" "build/inwersjePermutacji" "build/parzystoscPermutacji" "build/liczbaInwersji" "build/parzystoscPermutacji" "build/permutationLimitChecker")
+req_files=("build" "build/permutations" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare")
 
 #testing if required files exist
 for req_file in ${req_files[@]}
@@ -138,13 +138,12 @@ do
 	if [ ${permutationsAmount[$i]} -eq 0 ]
 	then
 		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
-        #./subsectionGenerator.sh `./build/permutacje ${setLength[$i]} A`
-        echo "`./build/permutacje ${setLength[$i]} A`" >> args.tmp
+        echo "`./build/permutations ${setLength[$i]} A`" >> args.tmp
         echo "" >> args.tmp
         ./subsectionGenerator.sh args.tmp
 	else
 		echo "\section{Zbior ${setLength[$i]}-elementowy zawierajacy permutacje w ilosci ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
-        echo "`./build/permutacje ${setLength[$i]} ${permutationsAmount[$i]}`" >> args.tmp
+        echo "`./build/permutations ${setLength[$i]} ${permutationsAmount[$i]}`" >> args.tmp
         echo "" >> args.tmp
         ./subsectionGenerator.sh args.tmp
 	fi
