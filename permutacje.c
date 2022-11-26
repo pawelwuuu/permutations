@@ -181,9 +181,6 @@ int main(int argc, char *argv[])
 	str[8] = '\0';
 	str2[52] = '\0';
 	int ile = 1;
-	printf("%s\n",str2);
-	printf("%s\n\n",str);
-	
 	
 	if (*argv[2] == *"A")
 	{
