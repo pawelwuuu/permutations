@@ -28,7 +28,7 @@ cmake ..
 ```bash
 make
 ```
-- Create file which will contain parameters for your program, it should contain single line with 2 parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config file have to end with a single new line.
+- Create file which will contain parameters for your program.
 - Change permissions for both bash scripts.
 ```bash
 chmod 777 ./pdfGenerator.sh
@@ -38,6 +38,10 @@ chmod 777 ./subsectionGenerator.sh
 ```bash
 ./pdfGenerator <config-file-name>
 ```
+
+### Configuration file parameters.
+
+It should contain single line with 2 parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config file have to end with a single new line. For purpose of generating all of possible permutations type 0 as number of permutations parameter.
 
 ## Supported languages
 Only polish language is supported at this moment.
