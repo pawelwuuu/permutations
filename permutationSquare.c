@@ -10,8 +10,7 @@ int main(int argc, char *argv[])
 	permutacja=argv[2];
 	int dlugosc = strlen(baza);
 	int ciag[dlugosc];
-	int n=0;
-	int m=0;
+	int ciag2[dlugosc];
 		for(int i=0;i<dlugosc;i++)
 		{
 			for(int j=0;j<dlugosc;j++)
@@ -22,17 +21,15 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
-	while(n<dlugosc)
-	{
-		if(ciag[n]==m)
+		for(int i=0;i<dlugosc;i++)
 		{
-			printf("%c",permutacja[ciag[m]]);n++;m=0;
-		} 
-		else;
-		{
-			m++;
+		  int a=ciag[i];
+		  ciag2[a]=i;
 		}
-	}
+		for(int i=0;i<dlugosc;i++)
+		{
+		printf("%c",permutacja[ciag2[i]]);
+		}
 printf("\n");
 return 0;
 }
