@@ -30,6 +30,6 @@ int main(int argc, char *argv[])
 		{
 		printf("%c",permutacja[ciag2[i]]);
 		}
-printf("\n");
+// printf("\n");
 return 0;
 }

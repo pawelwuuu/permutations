@@ -104,7 +104,10 @@ do
     fi
 done
 
-
+#checking if args.tmp exists
+if [ -a ./args.tmp ] ; then
+        rm args.tmp
+fi
 
 #checking if permutations amount is in range of permutations avalible to obtain
 for ((j=0; j<${#setLength[@]}; j++))
@@ -137,6 +140,10 @@ do
 
 	if [ ${permutationsAmount[$i]} -eq 0 ]
 	then
+        if [ ${setLength[$i]} -gt 19 ]; then
+            echo "Option to generate all permutations is avaliable only for sets consist of 19 and below length."
+            exit
+        fi
 		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
         echo "`./build/permutations ${setLength[$i]} A`" >> args.tmp
         echo "" >> args.tmp

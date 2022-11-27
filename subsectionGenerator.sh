@@ -8,7 +8,7 @@ for ((i=0; i<${#permutations[@]}-1; i++))
 do
     echo "\subsection{${permutations[i]}}" >> ./generatedPdf/sketch.tex
 
-    echo "\begin{tabular}{ |p{4.5cm}|p{9cm}| }" >> ./generatedPdf/sketch.tex
+    echo "\begin{tabular}{ |p{4.5cm}|p{12.5cm}| }" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
     echo  "Permutacja w dwoch liniach & skryptIgora.sh \\\\"  >> ./generatedPdf/sketch.tex 
