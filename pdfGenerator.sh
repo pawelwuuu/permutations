@@ -93,7 +93,7 @@ done
 
 
 #array of required files
-req_files=("build" "build/permutations" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare" "build/orderOfPermutations")
+req_files=("build" "build/permutations" "build/cycleNotation" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare" "build/orderOfPermutations")
 
 #testing if required files exist
 for req_file in ${req_files[@]}
@@ -149,7 +149,7 @@ do
         echo "" >> args.tmp
         ./subsectionGenerator.sh args.tmp
 	else
-		echo "\section{Zbior ${setLength[$i]}-elementowy zawierajacy permutacje w ilosci ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
+		echo "\section{Zbiór ${setLength[$i]}-elementowy zawierający permutacje w ilości ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
         echo "`./build/permutations ${setLength[$i]} ${permutationsAmount[$i]}`" >> args.tmp
         echo "" >> args.tmp
         ./subsectionGenerator.sh args.tmp
