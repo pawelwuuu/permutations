@@ -30,7 +30,7 @@ int main( int argc, char *argv[] )
                     printf("%c",cycle[y]);
                     }
                 }
-            printf(")");
+            printf(") ");
             //order=order*y;
         }
     }
