@@ -11,7 +11,7 @@ do
     echo "\begin{tabular}{ |p{4.5cm}|p{12.5cm}| }" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
-    echo  "Permutacja w dwoch liniach & skryptIgora.sh \\\\"  >> ./generatedPdf/sketch.tex 
+    echo  "Permutacja w notacji cyklicznej & `./build/orderOfPermutation $originalPermutation ${permutations[i]}` \\\\"  >> ./generatedPdf/sketch.tex 
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
     echo "Kwadrat permutacji & `./build/permutationSquare $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
@@ -25,5 +25,6 @@ do
 
     echo "Parzystosc permutacji & `./build/permutationEveness $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
+
     echo "\end{tabular}" >> ./generatedPdf/sketch.tex
 done

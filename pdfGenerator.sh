@@ -93,7 +93,7 @@ done
 
 
 #array of required files
-req_files=("build" "build/permutations" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare")
+req_files=("build" "build/permutations" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare" "build/orderOfPermutations")
 
 #testing if required files exist
 for req_file in ${req_files[@]}
@@ -170,4 +170,3 @@ pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
 
 echo
 echo "Success (probably)!"
-
