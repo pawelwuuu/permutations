@@ -7,11 +7,11 @@ then
     if ! [ -e $filename ]
 		then
 			echo "Unable to find or open configuration file."
-			exit
+			exit 1
 		fi
 else
     echo "You have forgotten about config filename."
-    exit
+    exit 2
 fi
 
 
@@ -37,30 +37,31 @@ done < $filename
 fileContent=`cat -e $filename`
 if [[ ${fileContent: -1} != '$' ]]; then
     echo "Invalid configuration parameters, there should be an empty line at the end of file."
-    exit
+    exit 3
 fi
 
 #checking if there is enough parameters
 if ! [[ ${#setLength[@]} -eq ${#permutationsAmount[@]} ]]
 then
-	echo "Invalid number of parameters, it should be in 1-1 number."
-	exit
+	echo "Invalid number of parameters, it should be in 1-1 ratio."
+	exit 4
 fi
 
-#checking if parameters are digits
+#checking if parameters are numbers
+numRegex='^[0-9]+$'
 for parameter in ${setLength[@]}
 do
-    if ! [[ $parameter =~ [0-9]+ ]] ; then
-        echo "Invalid configuration parameters, there should be only numbers in config file."
-        exit
+    if ! [[ $parameter =~ $numRegex ]] ; then
+        echo "Invalid configuration parameters, there should be only numbers in config file. Wrong parameter is: $parameter"
+        exit 5
     fi
 done
 
 for parameter in ${permutationsAmount[@]}
 do
-    if ! [[ $parameter =~ [0-9]+ ]] ; then
-        echo "Invalid configuration parameters, there should be only numbers in config file."
-        exit
+    if ! [[ $parameter =~ $numRegex ]] ; then
+        echo "Invalid configuration parameters, there should be only numbers in config file. Wrong parameter is: $parameter"
+        exit 6
     fi
 done
 
@@ -69,7 +70,7 @@ for parameter in ${setLength[@]}
 do
     if [ $parameter -lt 0 ] ; then
         echo "Invalid configuration parameters, there should be only positive numbers in config file."
-        exit
+        exit 7
     fi
 done
 
@@ -77,7 +78,7 @@ for parameter in ${permutationsAmount[@]}
 do
     if [ $parameter -lt 0 ] ; then
         echo "Invalid configuration parameters, there should be only positive numbers in config file."
-        exit
+        exit 8
     fi
 done
 
@@ -86,21 +87,21 @@ for parameter in ${setLength[@]}
 do
     if [[ $parameter -gt 60 ]] ; then
         echo "Invalid configuration parameters, limit of set length is 60."
-        exit
+        exit 9
     fi
 done
 
 
 
 #array of required files
-req_files=("build" "build/permutations" "build/cycleNotation" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare" "build/orderOfPermutations")
+req_files=("subsectionGenerator.sh" "build" "build/permutations" "build/cycleNotation" "build/permutationIversions" "build/numberOfInversions" "build/permutationLimitChecker" "build/permutationEveness" "build/permutationSquare" "build/orderOfPermutations")
 
 #testing if required files exist
 for req_file in ${req_files[@]}
 do
     if ! [ -a $req_file ] ; then
         echo "Error! $req_file is missing. Check if that file exists, otherwise use make command in build folder."
-        exit
+        exit 10
     fi
 done
 
@@ -116,7 +117,7 @@ do
 	if [ $possibleToObtain = "F" ]
 	then
 		echo "Invalid configuration parameters, you can only obtain  permutations from ${setLength[$j]} an element set."
-        exit
+        exit 11
 	fi
 done
 
@@ -141,8 +142,10 @@ do
 	if [ ${permutationsAmount[$i]} -eq 0 ]
 	then
         if [ ${setLength[$i]} -gt 19 ]; then
-            echo "Option to generate all permutations is avaliable only for sets consist of 19 and below length."
-            exit
+            echo "Option to generate all permutations is avaliable only for sets consist of 19 and below length. Generation canceled."
+            rm args.tmp
+            rm -r generatedPdf
+            exit 12
         fi
 		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
         echo "`./build/permutations ${setLength[$i]} A`" >> args.tmp
@@ -168,5 +171,4 @@ echo "\end{document}" >> ./generatedPdf/sketch.tex
 
 pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
 
-echo
 echo "Success (probably)!"
