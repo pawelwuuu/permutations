@@ -8,7 +8,7 @@ then
     exit 13
 fi
 
-$isEnoughSpace=`df -h /home | grep -c 100%`
+isEnoughSpace=`df -h /home | grep -c 100%`
 if [[ isEnoughSpace -eq 1 ]]
 then
     echo "Not enough space on disc."
@@ -39,9 +39,18 @@ while read line; do
     #line e.g line (2 5) and line (8 6) will be stored in
     #parameters array like that [2, 5, 8, 6].
     parameters=()
+    numberOfParamInLine=0
     for value in $line; do
         parameters+=($value)
+        let numberOfParamInLine++
     done
+
+    #checking if number of parameters in line are in number of two
+    if ! [[ numberOfParamInLine -eq 2 ]]
+    then
+        echo "There are more or less parameters than 2 in config file."
+        exit 14
+    fi
 
     setLength+=(${parameters[0]})
     permutationsAmount+=(${parameters[1]})
