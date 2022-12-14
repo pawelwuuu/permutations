@@ -160,12 +160,12 @@ do
 		echo "\section{Wszystkie permutacje zbioru ${setLength[$i]}-elementowego}" >> ./generatedPdf/sketch.tex
         echo "`./build/permutations ${setLength[$i]} A`" >> args.tmp
         echo "" >> args.tmp
-        ./subsectionGenerator.sh args.tmp
+        ./subsectionGenerator.sh args.tmp ${setLength[$i]}
 	else
 		echo "\section{Zbiór ${setLength[$i]}-elementowy zawierający permutacje w ilości ${permutationsAmount[$i]}}" >> ./generatedPdf/sketch.tex
         echo "`./build/permutations ${setLength[$i]} ${permutationsAmount[$i]}`" >> args.tmp
         echo "" >> args.tmp
-        ./subsectionGenerator.sh args.tmp
+        ./subsectionGenerator.sh args.tmp ${setLength[$i]}
 	fi
 	
 	sleep 0.5
@@ -179,7 +179,7 @@ done
 echo "\end{document}" >> ./generatedPdf/sketch.tex
 
 
-pdflatex  -output-directory=generatedPdf -jobname=GeneratedPdf ./generatedPdf/sketch.tex
+pdflatex  -output-directory=generatedPdf -jobname="Generated PDF" ./generatedPdf/sketch.tex
 
 echo "Success (probably)!"
 exit 0
