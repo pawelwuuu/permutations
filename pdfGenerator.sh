@@ -156,6 +156,7 @@ echo "Creating pdf in progress..."
 echo "\documentclass{article}" >> ./generatedPdf/sketch.tex
 echo "\usepackage[T1]{fontenc}" >> ./generatedPdf/sketch.tex
 echo "\usepackage[legalpaper, margin=1.2in]{geometry}" >> ./generatedPdf/sketch.tex
+echo "\usepackage{longtable}" >> ./generatedPdf/sketch.tex
 echo "\begin{document}" >> ./generatedPdf/sketch.tex
 
 for ((i=0; i<${#setLength[@]}; i++))

@@ -8,7 +8,7 @@ for ((i=0; i<${#permutations[@]}-1; i++))
 do
     echo "\subsection{${permutations[i]}}" >> ./generatedPdf/sketch.tex
 
-    echo "\begin{tabular}{ |p{4.5cm}|p{12.5cm}| }" >> ./generatedPdf/sketch.tex
+    echo "\begin{longtable}{ |p{4.5cm}|p{12.5cm}| }" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
     echo  "Rząd permutacji & `./build/orderOfPermutations $originalPermutation ${permutations[i]}` \\\\"  >> ./generatedPdf/sketch.tex 
@@ -29,5 +29,5 @@ do
     echo "Parzystość permutacji & `./build/permutationEveness $originalPermutation ${permutations[i]}` \\\\" >> ./generatedPdf/sketch.tex
     echo  "\hline" >> ./generatedPdf/sketch.tex
 
-    echo "\end{tabular}" >> ./generatedPdf/sketch.tex
+    echo "\end{longtable}" >> ./generatedPdf/sketch.tex
 done
