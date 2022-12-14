@@ -179,7 +179,7 @@ done
 echo "\end{document}" >> ./generatedPdf/sketch.tex
 
 
-pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
+pdflatex  -output-directory=generatedPdf -jobname=GeneratedPdf ./generatedPdf/sketch.tex
 
 echo "Success (probably)!"
 exit 0
