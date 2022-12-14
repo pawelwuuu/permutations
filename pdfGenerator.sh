@@ -179,7 +179,7 @@ done
 echo "\end{document}" >> ./generatedPdf/sketch.tex
 
 
-pdflatex  -output-directory=generatedPdf -jobname="Generated PDF" ./generatedPdf/sketch.tex
+pdflatex  -output-directory=generatedPdf -jobname="Generated PDF" --interaction=batchmode ./generatedPdf/sketch.tex > /dev/null
 
-echo "Success (probably)!"
+echo "Success! Generated file is in generatedPdf folder."
 exit 0
