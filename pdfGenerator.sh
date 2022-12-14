@@ -1,20 +1,5 @@
 #!/bin/bash
 
-#Checking if there is enough space on disc to run a script
-isEnoughSpace=`df -h /home | grep -c 99%`
-if [[ isEnoughSpace -eq 1 ]]
-then
-    echo "Not enough space on disc."
-    exit 13
-fi
-
-isEnoughSpace=`df -h /home | grep -c 100%`
-if [[ isEnoughSpace -eq 1 ]]
-then
-    echo "Not enough space on disc."
-    exit 13
-fi
-
 filename=$1
 #checking if configuration file exists
 if [[ -n "$1" ]]
@@ -197,3 +182,4 @@ echo "\end{document}" >> ./generatedPdf/sketch.tex
 pdflatex  -output-directory=generatedPdf ./generatedPdf/sketch.tex
 
 echo "Success (probably)!"
+exit 0
