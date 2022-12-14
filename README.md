@@ -1,5 +1,5 @@
 # Permutations document generator 
-This project is linux based tool that gives oportunity to generate pdf document with various permutations as data. It consists of bash scripts which loads all of configuration parameters, also validates them and pass to the c files, where various permutations are given as output. C files also computes statistcs for certain permutation.
+This project is Linux based tool that gives oportunity to generate pdf document with various permutations as data. It consists of bash scripts which loads all of configuration parameters, also validates them and pass to the c files, where various permutations are given as output. C files also computes statistcs for certain permutation.
 
 ```mermaid
 sequenceDiagram
@@ -11,7 +11,15 @@ Bash subsection generator ->> Tex file: Appends subsection to tex file.
 ```
 
 ## Structure of generated pdf
-Generated pdf consists of sections for single demand, for example for 19 permutations from 5-th element set. There are also subsections in sections which contains statistcs for every single permutation.
+Generated pdf consists of sections for a single demand from a configuration file, for example for 19 permutations from 5-th element set there will be one section consisting of 19 subsections. Subsections consist of table of single permutation statistics. If there is more than 45 elements in set, then longtable will be used instead of tabular. So pages may be splited for longer element sets.
+
+### Avalaible statistics
+- Permutation square
+- Permutation inversions
+- Number of permutation inversions
+- Order of permutation
+- Permutation in cycle notation
+- Eveness of permutation
 
 ## Usage
 To use this project follow instructions given below:
