@@ -49,7 +49,7 @@ chmod 777 ./subsectionGenerator.sh
 
 ### Configuration file parameters.
 
-It should contain single line with two parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config files must end with a single new line. For purpose of generating all permutations type 0 as number of permutations parameter.
+It should contain single line with two parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config files must end with a single new line. For purpose of generating all possible permutations type 0 as number of permutations parameter.
 
 ## Supported languages
 Only polish language is supported at this moment.
