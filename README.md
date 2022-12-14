@@ -1,5 +1,5 @@
 # Permutations document generator 
-This project is Linux based tool that gives oportunity to generate pdf document with various permutations as data. It consists of bash scripts which loads all of configuration parameters, also validates them and pass to the c files, where various permutations are given as output. C files also computes statistcs for certain permutation.
+This project is Linux based tool that gives opportunity to generate pdf document with various permutations as data. It consists of bash scripts which loads all of configuration parameters, also validates them and pass to the c files, where various permutations are given as output. C files also computes statistics for certain permutation.
 
 ```mermaid
 sequenceDiagram
@@ -11,7 +11,7 @@ Bash subsection generator ->> Tex file: Appends subsection to tex file.
 ```
 
 ## Structure of generated pdf
-Generated pdf consists of sections for a single demand from a configuration file, for example for 19 permutations from 5-th element set there will be one section consisting of 19 subsections. Subsections consist of table of single permutation statistics. If there is more than 45 elements in set, then longtable will be used instead of tabular. So pages may be splited for longer element sets.
+Generated pdf consists of sections for a single demand from a configuration file, for example for nineteen permutations from 5-th element set there will be one section consisting of nineteen subsections. Subsections consist of table of single permutation statistics. If there are more than forty-five elements in set, then longtable will be used instead of tabular. So, pages may be divided for longer element sets.
 
 ### Avalaible statistics
 - Permutation square
@@ -19,10 +19,10 @@ Generated pdf consists of sections for a single demand from a configuration file
 - Number of permutation inversions
 - Order of permutation
 - Permutation in cycle notation
-- Eveness of permutation
+- Evenness of permutation
 
 ## Usage
-To use this project follow instructions given below:
+To use this project, follow instructions given below:
 - Create build folder inside project folder.
 ```bash
 mkdir build
@@ -49,7 +49,7 @@ chmod 777 ./subsectionGenerator.sh
 
 ### Configuration file parameters.
 
-It should contain single line with 2 parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config file have to end with a single new line. For purpose of generating all of possible permutations type 0 as number of permutations parameter.
+It should contain single line with two parameters. First parameter is length of permutation set (max 60), second is number of permutations that will be generated. Config files must end with a single new line. For purpose of generating all permutations type 0 as number of permutations parameter.
 
 ## Supported languages
 Only polish language is supported at this moment.
